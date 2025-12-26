@@ -1,10 +1,12 @@
 "use client";
+import FlyingBirdsBackground from "../../ui/FlyingBirdsBackground.jsx"
 
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function contact() {
   return (
     <section className=" py-20 mt-10">
+        <FlyingBirdsBackground/>
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="mb-10 text-3xl font-bold text-slate-900">
           Get in touch!

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Login from "../Login/page.js"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -96,15 +97,14 @@ export default function Navbar() {
 
         {/* Right Actions - Login Button */}
         <div className="flex items-center gap-4">
-          <Link href="/login">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden md:block rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2.5 text-xs font-bold text-white shadow-lg transition-all hover:shadow-blue-500/30"
-            >
-              LOGIN
-            </motion.button>
-          </Link>
+          <button
+        onClick={() => setOpen(true)}
+        className="rounded-full bg-red-500 px-5 py-2 text-white hover:bg-red-600"
+      >
+        Login
+      </button>
+
+      <Login isOpen={open} onClose={() => setOpen(false)} />
 
           {/* Mobile Toggle */}
           <button
