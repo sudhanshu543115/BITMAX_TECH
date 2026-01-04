@@ -1,13 +1,23 @@
- import FlyingBirdsBackground from "../../ui/FlyingBirdsBackground.jsx"
-export default function AboutPage() {
+
+
+
+
+'use client';
+
+import React from 'react';
+import ImpressiveSkills from '@/Componants/Pages/About/Skills.jsx';
+import AboutSection from '@/Componants/Pages/About/AboutSection.jsx';
+import FAQSection from '@/Componants/Pages/About/Faq.jsx';
+
+
+const AboutPage = () => {
   return (
-    <main style={{ padding: "60px", fontFamily: "sans-serif" }}>
-      <FlyingBirdsBackground/>
-      <h1>About Bitmax</h1>
-      <p>
-        Bitmax is a modern web platform built with Next.js. 
-        Here you can describe your product, team, or mission.
-      </p>
-    </main>
+    <main>
+      <AboutSection />
+      <ImpressiveSkills />
+      <FAQSection />
+    </main>  
   );
-}
+};
+
+export default AboutPage;

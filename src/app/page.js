@@ -6,6 +6,11 @@ import About from "../Componants/HomeSection/AboutSection.jsx";
 import GroupCompanies from "../Componants/HomeSection/GroupCompanies.jsx"
 import Whoweare from "../Componants/HomeSection/Whoweare.jsx"
 import Contact from "./contact/page"
+import Ourservices from "../Componants/HomeSection/Ourservices.jsx"
+import Plan from "../Componants/HomeSection/Plan.jsx"
+import Trust from "../Componants/HomeSection/Trust.jsx"
+import Technologies from "../Componants/HomeSection/Technologies.jsx"
+
 
 export default function HomePage() {
   return (
@@ -17,7 +22,13 @@ export default function HomePage() {
       <About/>
       <GroupCompanies/>
       <Whoweare/>
+      <Ourservices/>
+      <Plan />
+      <Trust />
+      
+      <Technologies />
       <Contact/>
+      
       
     </div>
   );
