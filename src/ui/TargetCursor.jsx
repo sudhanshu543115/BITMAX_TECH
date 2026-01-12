@@ -18,14 +18,23 @@ const TargetCursor = ({
   const tickerFnRef = useRef(null);
   const activeStrengthRef = useRef(0);
 
+  
+
   const isMobile = useMemo(() => {
-    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isSmallScreen = window.innerWidth <= 768;
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
-    const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
-    return (hasTouchScreen && isSmallScreen) || isMobileUserAgent;
-  }, []);
+  if (typeof window === 'undefined') return true; // 👈 SSR guard
+
+  const hasTouchScreen =
+    'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  const isSmallScreen = window.innerWidth <= 768;
+
+  const userAgent = navigator.userAgent || '';
+  const mobileRegex =
+    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+
+  return (hasTouchScreen && isSmallScreen) || mobileRegex.test(userAgent.toLowerCase());
+}, []);
+
 
   const constants = useMemo(
     () => ({
