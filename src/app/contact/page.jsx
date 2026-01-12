@@ -1,290 +1,400 @@
 "use client";
 
-import { useState } from "react";
-import { 
-  FiMapPin, 
-  FiMail, 
-  FiPhone, 
-  FiGlobe,
-  FiSend
-} from "react-icons/fi";
+import TextType from "../../ui/TextType";
+import BlurText from "../../ui/BlurText";
+import ShinyText from "../../ui/ShinyText";
+import TargetCursor from "../../ui/TargetCursor";
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    location: "",
-    message: ""
-  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  User,
+  MessageSquare,
+  Clock,
+  Globe,
+} from "lucide-react";
+
+export default function Contact({ condition }) {
+  
+  const handleAnimationComplete = () => {
+    console.log("Animation completed!");
+    
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    console.log("Form submitted:", formData);
-    setIsSubmitting(false);
-    setSubmitted(true);
-
-    // Reset form
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        location: "",
-        message: ""
-      });
-      setSubmitted(false);
-    }, 3000);
-  };
-
-  const contactInfo = [
-    {
-      icon: FiMapPin,
-      title: "Address:",
-      content: "Bhustan Alphabetum, Unit: 1024, Tower C, Floor 10th, Noida Expressway Noida - 201303",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
-    },
-    {
-      icon: FiMail,
-      title: "Email:",
-      content: ["info@bitmaxtechnology.com", "info@bitmaxyou.com"],
-      color: "text-red-600",
-      bgColor: "bg-red-50"
-    },
-    {
-      icon: FiPhone,
-      title: "Phone Number: (IVR)",
-      content: "+91 8595898967",
-      color: "text-green-600",
-      bgColor: "bg-green-50"
-    },
-    {
-      icon: FiGlobe,
-      title: "Website:",
-      content: "www.bitmaxtechnology.com",
-      color: "text-purple-600",
-      bgColor: "bg-purple-50"
-    }
-  ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Hero Section with Background Image */}
-      <div className="relative h-[500px] overflow-hidden">
-        {/* Background Image Placeholder */}
-        <div className="absolute inset-0 bg-gray-800">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-9xl opacity-20">👤</div>
+    <section
+      className="relative min-h-screen py-18 bg-cover bg-fixed bg-center"
+      style={{ backgroundImage: "url('/bgAnim.gif')" }}
+    >
+     
+
+    
+      {/* Enhanced Dark Overlay with Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/85 via-slate-900/80 to-purple-900/70"></div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-12">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-600/20 to-blue-600/20 backdrop-blur-sm rounded-2xl mb-8 border border-white/10 shadow-2xl">
+            <MessageSquare className="text-white h-9 w-9" />
           </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
+            <BlurText
+              text=" Contact us"
+              delay={150}
+              animateBy="words"
+              direction="top"
+              onAnimationComplete={handleAnimationComplete}
+            />
+           
+          </h2>
+          <div className="flex justify-center mt-6">
+            <span className="h-1.5 w-32 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded-full"></span>
+          </div>
+          <p className="mt-8 text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+            {/* Get in touch with our team. We're here to help you with innovative solutions and responsive support. */}
+          
+            <TextType
+              text={[
+                "Welcome in Contact Page",
+                "Get in touch with our team.",
+                "We're here to help you with innovative solutions and responsive support.",
+              ]}
+              typingSpeed={75}
+              pauseDuration={1500}
+              showCursor={true}
+              cursorCharacter="|"
+            />
+          </p>
         </div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="grid gap-10 lg:gap-16 lg:grid-cols-2">
+           <TargetCursor 
+        spinDuration={2}
+        hideDefaultCursor={true}
+        parallaxOn={true}
+      />
+          {/* LEFT FORM - Modern Glass Card */}
+          <div className="relative">
+            {/* Gradient Border */}
+            <div className="absolute -inset-0.5  rounded-3xl blur opacity-60"></div>
 
-        {/* Content */}
-        <div className="relative h-full flex items-center justify-center text-center px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-              We're Just a Message Away : Reach Out to Us
-            </h1>
-            <p className="text-2xl md:text-3xl font-bold">
-              <span className="text-blue-400">BITMAX</span>
-              <span className="text-white"> Technology</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left Side - Contact Form */}
-          <div>
-            <div className="mb-8">
-              <h2 className="text-3xl font-black text-gray-900 mb-2">Send Message</h2>
-              <div className="w-20 h-1 bg-red-500" />
-            </div>
-
-            {submitted ? (
-              <div className="bg-green-50 border-2 border-green-500 rounded-2xl p-8 text-center">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FiSend className="w-8 h-8 text-white" />
+            <div className="relative bg-gray-900/60 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-white/10">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-2 bg-gradient-to-r from-red-600 to-red-700 rounded-lg">
+                  <Send className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-green-900 mb-2">Message Sent!</h3>
-                <p className="text-green-700">We'll get back to you soon.</p>
+                <h3 className="text-2xl font-bold text-white">
+                  
+                  <ShinyText
+                    text="Send a Message"
+                    speed={2}
+                    delay={0}
+                    color="#b5b5b5"
+                    shineColor="#ffffff"
+                    spread={120}
+                    direction="left"
+                    yoyo={false}
+                    pauseOnHover={false}
+                  />
+                </h3>
               </div>
-            ) : (
-              <div className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Name */}
-                  <div>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your Name"
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
-                      required
-                    />
-                  </div>
 
-                  {/* Email */}
-                  <div className="relative">
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Your Email"
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
-                      required
-                    />
-                    {formData.email && (
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                        <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                          <span className="text-white text-xs">✓</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Phone */}
-                  <div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Your Phone"
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
-                      required
-                    />
-                  </div>
-
-                  {/* Location */}
-                  <div>
-                    <input
-                      type="text"
-                      name="location"
-                      value={formData.location}
-                      onChange={handleChange}
-                      placeholder="Your Location"
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
-                      required
-                    />
-                  </div>
-                </div>
-
-                {/* Message */}
+              <form className="space-y-8">
                 <div>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Your Message"
-                    rows={6}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none resize-none"
-                    required
+                  <label className="text-gray-300 text-sm font-medium mb-3 block flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter your name"
+                    className="cursor-target w-full rounded-xl bg-white/10 border border-white/15 px-5 py-4 text-white placeholder:text-gray-400 outline-none focus:border-red-500 focus:bg-white/15 transition-colors"
                   />
                 </div>
 
-                {/* Submit Button */}
+                <div>
+                  <label className="text-gray-300 text-sm font-medium mb-3 block flex items-center gap-2">
+                    <Mail className="h-4 w-4" />
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="you@example.com"
+                    className="cursor-target w-full rounded-xl bg-white/10 border border-white/15 px-5 py-4 text-white placeholder:text-gray-400 outline-none focus:border-blue-500 focus:bg-white/15 transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className=" text-gray-300 text-sm font-medium mb-3 block flex items-center gap-2">
+                    <MessageSquare className="h-4 w-4" />
+                    Your Message
+                  </label>
+                  <textarea
+                    rows="5"
+                    placeholder="Tell us about your project or inquiry..."
+                    className="cursor-target w-full resize-none rounded-xl bg-white/10 border border-white/15 px-5 py-4 text-white placeholder:text-gray-400 outline-none focus:border-purple-500 focus:bg-white/15 transition-colors"
+                  ></textarea>
+                </div>
+
                 <button
-                  onClick={handleSubmit}
-                  disabled={isSubmitting}
-                  className="bg-red-500 hover:bg-red-600 text-white px-10 py-3 rounded-xl font-bold uppercase transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                  type="submit"
+                  className="cursor-target w-full rounded-xl bg-gradient-to-r from-red-600 via-red-700 to-purple-700 px-8 py-4 font-bold text-white tracking-wider flex items-center justify-center gap-3 hover:from-red-700 hover:via-red-800 hover:to-purple-800 transition-all hover:shadow-2xl shadow-lg"
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center gap-2">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
-                    </span>
-                  ) : (
-                    "SUBMIT"
-                  )}
+                  <Send className="h-5 w-5" />
+                  <ShinyText
+                    text="Send a Message"
+                    speed={2}
+                    delay={0}
+                    color="#b5b5b5"
+                    shineColor="#ffffff"
+                    spread={120}
+                    direction="left"
+                    yoyo={false}
+                    pauseOnHover={false}
+                  />
                 </button>
-              </div>
-            )}
+              </form>
+            </div>
           </div>
 
-          {/* Right Side - Contact Information */}
-          <div className="space-y-6">
-            {contactInfo.map((info, index) => {
-              const IconComponent = info.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className={`w-14 h-14 ${info.bgColor} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className={`w-7 h-7 ${info.color}`} />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-gray-900 mb-2 text-lg">{info.title}</h3>
-                      {Array.isArray(info.content) ? (
-                        <div className="space-y-1">
-                          {info.content.map((item, idx) => (
-                            <p key={idx} className="text-gray-700 font-medium">
-                              {item}
-                            </p>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-gray-700 font-medium leading-relaxed">
-                          {info.content}
-                        </p>
-                      )}
+          {/* RIGHT INFO */}
+          <div className="space-y-10">
+            {/* Contact Information Cards */}
+            <div className="grid gap-6">
+              <div className="bg-gradient-to-br from-gray-900/70 to-gray-800/60 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-red-500/30 transition-colors">
+                <div className="flex items-start gap-5 ">
+                  <div className="p-3 bg-gradient-to-br from-red-600/20 to-red-700/20 rounded-xl border border-red-500/20">
+                    <Mail className="text-red-400 h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-2">
+                      Email Address
+                    </h4>
+                    <p className="text-lg font-semibold text-white mb-1 ">
+                      <ShinyText
+                        text="info@bitmaxtechnology.com"
+                        speed={2}
+                        delay={0}
+                        color="#b5b5b5"
+                        shineColor="#ffffff"
+                        spread={120}
+                        direction="left"
+                        yoyo={false}
+                        pauseOnHover={false}
+                      />
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      Primary contact for general inquiries
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-gray-900/70 to-gray-800/60 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-green-500/30 transition-colors">
+                <div className="flex items-start gap-5">
+                  <div className="p-3 bg-gradient-to-br from-green-600/20 to-green-700/20 rounded-xl border border-green-500/20">
+                    <Phone className="text-green-400 h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-2">
+                      Phone Number
+                    </h4>
+                    <p className="text-xl font-bold text-white mb-1">
+                      <ShinyText
+                        text="+91 85959 86867"
+                        speed={2}
+                        delay={0}
+                        color="#b5b5b5"
+                        shineColor="#ffffff"
+                        spread={120}
+                        direction="left"
+                        yoyo={false}
+                        pauseOnHover={false}
+                      />
+                    </p>
+                    <div className="flex flex-wrap gap-3 mt-3">
+                      <span className="px-3 py-1 bg-green-900/30 text-green-300 text-xs rounded-full">
+                        IVR Available
+                      </span>
+                      <span className="px-3 py-1 bg-blue-900/30 text-blue-300 text-xs rounded-full">
+                        Mon-Fri: 9AM-6PM
+                      </span>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
 
-            {/* Additional CTA */}
-            <div className="bg-blue-600 rounded-2xl p-8 text-white mt-8">
-              <h3 className="text-2xl font-black mb-3">Ready to Start?</h3>
-              <p className="text-blue-100 mb-6">
-                Get in touch with us today and let's discuss how we can help transform your business.
-              </p>
-              <button className="bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-all duration-300 hover:scale-105">
-                Schedule a Call
-              </button>
+              <div className="bg-gradient-to-br from-gray-900/70 to-gray-800/60 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-blue-500/30 transition-colors">
+                <div className="flex items-start gap-5">
+                  <div className="p-3 bg-gradient-to-br from-blue-600/20 to-blue-700/20 rounded-xl border border-blue-500/20">
+                    <MapPin className="text-blue-400 h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-2">
+                      Office Address
+                    </h4>
+                    <p className="text-base font-medium text-white leading-relaxed">
+                      <ShinyText
+                        text="Bhutani Alphathum, Unit-1034,"
+                        speed={2}
+                        delay={0}
+                        color="#b5b5b5"
+                        shineColor="#ffffff"
+                        spread={120}
+                        direction="left"
+                        yoyo={false}
+                        pauseOnHover={false}
+                      />
+                      <br />
+                      <ShinyText
+                        text=" Tower A, Sector 90,"
+                        speed={2}
+                        delay={0}
+                        color="#b5b5b5"
+                        shineColor="#ffffff"
+                        spread={120}
+                        direction="left"
+                        yoyo={false}
+                        pauseOnHover={false}
+                      />
+
+                      <br />
+                      <ShinyText
+                        text="Noida - 201305, Uttar Pradesh"
+                        speed={2}
+                        delay={0}
+                        color="#b5b5b5"
+                        shineColor="#ffffff"
+                        spread={120}
+                        direction="left"
+                        yoyo={false}
+                        pauseOnHover={false}
+                      />
+                    </p>
+                    <div className="mt-3">
+                      <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-900/30 text-blue-300 text-xs rounded-full">
+                        <Globe className="h-3 w-3" />
+                        India
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Map Section (Optional) */}
-       <div className="overflow-hidden rounded-xl border shadow ml-15 mr-15">
+            {/* Map Section */}
+          </div>
+          <div className=" bg-gradient-to-br from-gray-900/70 to-gray-800/60 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2 bg-gradient-to-br from-purple-600/20 to-purple-700/20 rounded-lg">
+                <MapPin className="h-5 w-5 text-purple-400" />
+              </div>
+              <h4 className="text-xl font-bold text-white">
+                <ShinyText
+                  text="Find Our Office"
+                  speed={2}
+                  delay={0}
+                  color="#b5b5b5"
+                  shineColor="#ffffff"
+                  spread={120}
+                  direction="left"
+                  yoyo={false}
+                  pauseOnHover={false}
+                />
+              </h4>
+            </div>
+
+            <div className="overflow-hidden rounded-xl border border-white/10 h-64 mb-4">
               <iframe
-                src="https://www.google.com/maps?q=Bhutani%20Alphathum%20Noida&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.5815615783!2d77.3512345!3d28.5212345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce60000000001%3A0x0!2zQmh1dGFuaSBBbHBoYXRodW0!5e0!3m2!1sen!2sin!4v1234567890"
                 width="100%"
-                height="280"
+                height="100%"
                 allowFullScreen=""
                 loading="lazy"
                 className="border-0"
+                title="Bitmax Technology Location"
               ></iframe>
             </div>
-    </div>
+
+            <p className="text-sm text-gray-400 text-center">
+              Visit our office for a personalized consultation
+            </p>
+          </div>
+
+          {/*  */}
+          <div className=" bg-gradient-to-br from-gray-900/70 to-gray-800/60 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
+            <div className=" flex items-center gap-3 mb-6">
+              <div className="p-2 bg-gradient-to-br from-yellow-600/20 to-yellow-700/20 rounded-lg">
+                <Clock className="h-5 w-5 text-yellow-400" />
+              </div>
+              <div> 
+                <h4 className="text-xl font-bold text-white">
+                  <ShinyText
+                    text="Business Hours"
+                    speed={2}
+                    delay={0}
+                    color="#b5b5b5"
+                    shineColor="#ffffff"
+                    spread={120}
+                    direction="left"
+                    yoyo={false}
+                    pauseOnHover={false}
+                  />
+                </h4>
+                <p className="text-sm text-gray-400">
+                  We're available during these times
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex justify-between items-center py-3 border-b border-white/10">
+                <span className="text-gray-300 font-medium">Weekdays</span>
+                <span className="font-semibold text-white bg-gradient-to-r from-green-600/20 to-green-700/20 px-4 py-2 rounded-lg">
+                  9:00 AM - 6:00 PM
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-3 border-b border-white/10">
+                <span className="text-gray-300 font-medium">Saturday</span>
+                <span className="font-semibold text-white bg-gradient-to-r from-blue-600/20 to-blue-700/20 px-4 py-2 rounded-lg">
+                  10:00 AM - 4:00 PM
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-3">
+                <span className="text-gray-300 font-medium">Sunday</span>
+                <span className="font-semibold text-white bg-gradient-to-r from-red-600/20 to-red-700/20 px-4 py-2 rounded-lg">
+                  Closed
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-gray-900/30 rounded-lg border border-white/10">
+              <p className="text-sm text-gray-300 text-center">
+                For urgent matters outside business hours, please email us and
+                we'll respond as soon as possible.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Note */}
+        <div className="mt-16 pt-8 border-t border-white/10">
+          <p className="text-center text-gray-400 text-sm">
+            © {new Date().getFullYear()} Bitmax Technology. All rights reserved.
+            |
+            <span className="text-gray-300 ml-2">
+              Typically respond within 24 hours
+            </span>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
