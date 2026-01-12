@@ -1,9 +1,12 @@
+
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../app/layout/Navbar.jsx"
 import Footer from "./layout/Footer.jsx"
 import WhatsAppFloat from "../Componants/WhatsappIcon/WhatsAppFloat.jsx"
 import { TracingBeam } from "../ui/Tracing_Beam.jsx";
+import LoginWrapper from "../components/LoginWrapper.jsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,12 +54,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div><Navbar/></div>
+        <div><Navbar /></div>
         <TracingBeam>
           {children}
         </TracingBeam>
         <Footer/>
         <WhatsAppFloat/>
+        <LoginWrapper />
       </body>
     </html>
   );

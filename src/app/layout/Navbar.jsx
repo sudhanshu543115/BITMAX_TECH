@@ -4,11 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Login from "../Login/page.js"
+import Login from "../Login/page.js";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const gradientHoverClasses =
     "transition-all duration-300 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-purple-600 hover:to-pink-600 font-semibold";
@@ -106,21 +107,21 @@ export default function Navbar() {
             Login
           </motion.button>
 
-      <Login isOpen={open} onClose={() => setOpen(false)} />
-
           {/* Mobile Toggle */}
           <button
             className="md:hidden text-2xl text-slate-800"
-            onClick={() => setOpen(!open)}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             ☰
           </button>
         </div>
       </div>
 
+      <Login isOpen={open} onClose={() => setOpen(false)} />
+
       {/* Mobile Menu with AnimatePresence */}
       <AnimatePresence>
-        {open && (
+        {mobileMenuOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -128,8 +129,13 @@ export default function Navbar() {
             className="overflow-hidden md:hidden bg-white/40 border-t border-white/20 backdrop-blur-xl"
           >
             <div className="flex flex-col space-y-4 px-8 py-6 text-sm font-bold tracking-widest text-slate-800">
-              {["HOME", "ABOUT US"].map((item) => (
-                <Link key={item} href={`/${item.toLowerCase().replace(" ", "")}`} className={gradientHoverClasses}>
+              {(["HOME", "ABOUT US"]).map((item) => (
+                <Link 
+                  key={item} 
+                  href={`/${item.toLowerCase().replace(" ", "")}`} 
+                  className={gradientHoverClasses}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   {item}
                 </Link>
               ))}
@@ -151,22 +157,63 @@ export default function Navbar() {
                       exit={{ height: 0, opacity: 0 }}
                       className="ml-4 mt-2 flex flex-col gap-3 overflow-hidden border-l-2 border-slate-200 pl-4 text-xs text-slate-600"
                     >
-                      <Link href="/services/web-development">Web Development</Link>
-                      <Link href="/services/app-development">App Development</Link>
-                      <Link href="/services/ui-ux-design">UI / UX Design</Link>
-                      <Link href="/services/digital-marketing">Digital Marketing</Link>
-                      <Link href="/services/ai-solutions">AI Solutions</Link>
+                      <Link 
+                        href="/services/web-development" 
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Web Development
+                      </Link>
+                      <Link 
+                        href="/services/app-development" 
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        App Development
+                      </Link>
+                      <Link 
+                        href="/services/ui-ux-design" 
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        UI / UX Design
+                      </Link>
+                      <Link 
+                        href="/services/digital-marketing" 
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Digital Marketing
+                      </Link>
+                      <Link 
+                        href="/services/ai-solutions" 
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        AI Solutions
+                      </Link>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
-              <Link href="/portfolio" className={gradientHoverClasses}>PORTFOLIO</Link>
-              <Link href="/contact" className={gradientHoverClasses}>CONTACT</Link>
+              <Link 
+                href="/portfolio" 
+                className={gradientHoverClasses}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                PORTFOLIO
+              </Link>
+              <Link 
+                href="/contact" 
+                className={gradientHoverClasses}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                CONTACT
+              </Link>
 
               <Link
                 href="/login"
                 className="mt-4 block w-full rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 py-3 text-center text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setOpen(true);
+                }}
               >
                 LOGIN
               </Link>
