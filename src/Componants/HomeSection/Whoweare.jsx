@@ -5,7 +5,14 @@ import { motion } from "framer-motion";
 
 export default function Whoweare() {
   return (
-    <section className=" py-20">
+    <section 
+    className="w-full min-h-screen py-16 px-4 pt-20 relative"
+      style={{
+        backgroundImage: 'url("/Hero.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}>
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-2">
 
         {/* LEFT CONTENT */}

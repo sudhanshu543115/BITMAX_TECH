@@ -36,8 +36,18 @@ const companies = [
 
 export default function GroupCompanies() {
   return (
-    <section className=" py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section 
+
+    className="w-full min-h-screen py-16 px-4 relative  py-20"
+      style={{
+        backgroundImage: 'url("/Hero.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    
+    >
+      <div className="mx-auto max-w-7xl px-6 w-full min-h-screen py-16 px-4 relative">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

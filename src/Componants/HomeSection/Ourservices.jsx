@@ -107,8 +107,19 @@ const ServicesSection = () => {
   };
 
   return (
-    <div className="w-full min-h-screen  py-16 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div 
+      className="w-full min-h-screen py-16 px-4 relative"
+      style={{
+        backgroundImage: 'url("/Hero.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark overlay for better text visibility */}
+      <div className="" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">

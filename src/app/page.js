@@ -10,24 +10,26 @@ import Ourservices from "../Componants/HomeSection/Ourservices.jsx"
 import Plan from "../Componants/HomeSection/Plan.jsx"
 import Trust from "../Componants/HomeSection/Trust.jsx"
 import Technologies from "../Componants/HomeSection/Technologies.jsx"
+import { TracingBeam } from "../ui/Tracing_Beam.jsx"
 
 
 export default function HomePage() {
   return (
     <div className="">
-      <FlyingBirdsBackground/>
+      <FlyingBirdsBackground />
+     
+        <Hero />
+        <Weoffer/>
+        <About/>
+        <GroupCompanies/>
+        <Whoweare/>
+        <Ourservices/>
+        <Plan />
+        <Trust />
+        
+        <Technologies />
+        <Contact/>
       
-      <Hero />
-      <Weoffer/>
-      <About/>
-      <GroupCompanies/>
-      <Whoweare/>
-      <Ourservices/>
-      <Plan />
-      <Trust />
-      
-      <Technologies />
-      <Contact/>
       
       
     </div>

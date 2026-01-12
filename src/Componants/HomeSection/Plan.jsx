@@ -105,7 +105,15 @@ const PricingPlans = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen  py-16 px-4">
+    <div 
+    className="w-full min-h-screen py-16 px-4 relative"
+      style={{
+        backgroundImage: 'url("/Hero.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

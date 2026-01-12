@@ -4,7 +4,15 @@ import { Code2, Smartphone, Sparkles, ArrowRight } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section id="about-section" className="relative py-24! overflow-hidden">
+    <section
+    
+      style={{
+        backgroundImage: 'url("/Hero.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+     id="about-section" className="relative py-24! overflow-hidden w-full min-h-screen py-16 px-4 ">
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20! right-0! w-96! h-96! bg-blue-200/30 rounded-full blur-3xl"></div>
