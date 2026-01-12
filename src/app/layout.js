@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "../app/layout/Navbar.jsx"
 import Footer from "./layout/Footer.jsx"
 import WhatsAppFloat from "../Componants/WhatsappIcon/WhatsAppFloat.jsx"
+import { TracingBeam } from "../ui/Tracing_Beam.jsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +25,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div><Navbar/></div>
-        {children}
-          <Footer/>
-          <WhatsAppFloat/>
+        <TracingBeam>
+          {children}
+        </TracingBeam>
+        <Footer/>
+        <WhatsAppFloat/>
       </body>
     </html>
   );
