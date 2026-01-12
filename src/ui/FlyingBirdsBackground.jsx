@@ -17,15 +17,14 @@ const FlyingBirdsBackground = () => {
         };
         resize();
 
-        // Boid parameters
-        // Boid parameters
-        const numBoids = 150;
-        const visualRange = 100;
-        const speedLimit = 3;
-        const minDistance = 40; // Increased separation distance
+        // Boid parameters - Optimized for performance
+        const numBoids = 50; // Reduced from 150 to 50
+        const visualRange = 75; // Reduced from 100
+        const speedLimit = 2.5; // Reduced from 3
+        const minDistance = 35; // Reduced from 40
         const turnFactor = 0.05;
-        const centeringFactor = 0.005; // Reduced from 1 to avoid clumping
-        const matchingFactor = 0.05;
+        const centeringFactor = 0.003; // Further reduced
+        const matchingFactor = 0.03; // Reduced from 0.05
 
         class Boid {
             constructor() {
@@ -131,32 +130,23 @@ const FlyingBirdsBackground = () => {
                 this.y += this.dy;
 
                 this.history.push({ x: this.x, y: this.y });
-                if (this.history.length > 5) this.history.shift();
+                if (this.history.length > 3) this.history.shift(); // Reduced history length
             }
 
             draw() {
                 const angle = Math.atan2(this.dy, this.dx);
 
-                // Draw trails
-                // ctx.beginPath();
-                // ctx.moveTo(this.history[0]?.x || this.x, this.history[0]?.y || this.y);
-                // for (let point of this.history) {
-                //      ctx.lineTo(point.x, point.y);
-                // }
-                // ctx.strokeStyle = this.color;
-                // ctx.stroke();
-
-                // Draw Bird (Triangle/Arrow shape)
+                // Optimized drawing - simpler shape
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(angle);
 
                 ctx.fillStyle = this.color;
+                // Simpler triangle shape
                 ctx.beginPath();
-                ctx.moveTo(10, 0);   // Nose
-                ctx.lineTo(-5, 5);   // Left wing back
-                ctx.lineTo(-2, 0);   // Center back (notch)
-                ctx.lineTo(-5, -5);  // Right wing back
+                ctx.moveTo(8, 0);
+                ctx.lineTo(-4, 3);
+                ctx.lineTo(-4, -3);
                 ctx.closePath();
                 ctx.fill();
 
@@ -170,10 +160,14 @@ const FlyingBirdsBackground = () => {
         }
 
         const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear screen
-            // Or use transparent fill for trails:
-            // ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-            // ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Use semi-transparent overlay for trail effect instead of clearRect
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Optimize rendering by skipping frames on low-end devices
+            const now = performance.now();
+            if (now - lastFrameTime < 16) return; // Cap at ~60fps
+            lastFrameTime = now;
 
             for (let boid of boids) {
                 boid.update(boids);
@@ -181,6 +175,8 @@ const FlyingBirdsBackground = () => {
             }
             animationFrameId = requestAnimationFrame(animate);
         };
+
+        let lastFrameTime = 0;
 
         animate();
         window.addEventListener('resize', resize);
