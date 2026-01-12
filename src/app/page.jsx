@@ -10,7 +10,7 @@ import Ourservices from "../Componants/HomeSection/Ourservices.jsx"
 import Plan from "../Componants/HomeSection/Plan.jsx"
 import Trust from "../Componants/HomeSection/Trust.jsx"
 import Technologies from "../Componants/HomeSection/Technologies.jsx"
-import TargetCursor from "../ui/TargetCursor";
+import TargetCursor from "../ui/TargetCursor.jsx";
 
 export default function HomePage() {
   return (
