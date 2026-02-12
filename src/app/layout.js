@@ -58,8 +58,8 @@ export default function RootLayout({ children }) {
         <TracingBeam>
           {children}
         </TracingBeam>
-        <Footer/>
-        <WhatsAppFloat/>
+        <Footer />
+        <WhatsAppFloat />
         <LoginWrapper />
       </body>
     </html>

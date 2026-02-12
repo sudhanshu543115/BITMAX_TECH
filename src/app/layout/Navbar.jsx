@@ -67,7 +67,7 @@ export default function Navbar() {
                 {[
                   "Web Development",
                   "App Development",
-                  "UI / UX Design",
+                  "UI UX Design",
                   "Digital Marketing",
                   "AI Solutions",
                 ].map((service) => (
@@ -170,7 +170,7 @@ export default function Navbar() {
                         App Development
                       </Link>
                       <Link 
-                        href="/services/ui-ux-design" 
+                        href="/services/uxdesign" 
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         UI / UX Design
